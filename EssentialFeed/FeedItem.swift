@@ -12,5 +12,5 @@ struct FeedItem {
     let description: String?
     let location: String?
     let imageURL: URL
-    //
+    ////
 }
