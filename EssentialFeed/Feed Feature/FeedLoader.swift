@@ -12,7 +12,8 @@ enum LoadFeedResult {
     case error(Error)
 }
 
-//This is the protocol
+//This is the protocol/boundary
 protocol FeedLoader {
     func load(completion: @escaping (LoadFeedResult) -> Void)
 }
+
