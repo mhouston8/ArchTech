@@ -24,7 +24,7 @@ class RemoteFeedLoaderTests: XCTestCase {
     }
     
     
-    func test_load_requestDataFromURL() {
+    func test_load_requestsDataFromURL() {
         let url = URL(string: "https://a-given-url.com")!
 //        let client = HTTPClientSpy() //this spy is now created in the factory method to prevent duplication.
         let (sut, client) = makeSUT(url: url)
