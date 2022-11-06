@@ -42,7 +42,7 @@ final public class RemoteFeedLoader {
             switch httpClientResult {
             case let .success(data, response):
                 if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completionHandler(.success(root.items))
+                    completionHandler(.success(root.items.map{$0.item}))
                 } else {
                     completionHandler(.failure(.invalidData))
                 }
@@ -56,5 +56,19 @@ final public class RemoteFeedLoader {
 
 //this is the root node in the payload contract
 private struct Root: Decodable {
-    let items: [FeedItem]
+    let items: [Item]
+}
+
+
+//transitional representation
+//this one matches the api json representation
+private struct Item: Decodable {
+    public let id: UUID
+    public let description: String?
+    public let location: String?
+    public let image: URL //this is different from FeedItem model
+    
+    var item: FeedItem {
+        return FeedItem(id: id, description: description, location: location, imageURL: image)
+    }
 }
