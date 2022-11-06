@@ -89,32 +89,15 @@ class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversItemsOn200HTTPResponse() {
         let (sut, client) = makeSUT()
         
-        let item1 = FeedItem(id: UUID(), description: nil, location: nil, imageURL: URL(string: "https://a-url.com")!)
+        let item1 = makeItem(id: UUID(), description: nil, location: nil, imageURL: URL(string: "https://a-url.com")!)
         
-        //turn the item into a json representation
-        let item1JSON = [
-            "id": item1.id.uuidString,
-            "image": item1.imageURL.absoluteString
-        ]
+        let item2 = makeItem(id: UUID(), description: "a description", location: "a location", imageURL: URL(string: "https://another-url.com")!)
         
-        let item2 = FeedItem(id: UUID(), description: "a description", location: "a location", imageURL: URL(string: "https://another-url.com")!)
+        let items = [item1.model, item2.model]
         
-        //turn this object into a json representation
-        let item2JSON = [
-            "id": item2.id.uuidString,
-            "description": item2.description,
-            "location": item2.location,
-            "image": item2.imageURL.absoluteString
-        ]
-        
-        
-        let itemsJSON = [
-            "items": [item1JSON, item2JSON]
-        ]
-        
-        expect(sut, toCompleteWithResult: .success([item1, item2])) {
+        expect(sut, toCompleteWithResult: .success(items)) {
             //turn this object into a json representation
-            let json = try! JSONSerialization.data(withJSONObject: itemsJSON)
+            let json = makeItemsJSON([item1.json, item2.json])
             client.complete(withStatusCode: 200, data: json)
         }
     }
@@ -155,6 +138,34 @@ class RemoteFeedLoaderTests: XCTestCase {
             
         }
         
+    }
+    
+    //MARK: Factory Methods
+    //factory methods for creating a feed item and its json representation
+    private func makeItem(id: UUID, description: String?, location: String?, imageURL: URL) -> (model: FeedItem, json: [String: Any]) {
+        let item = FeedItem(id: id, description: description, location: location, imageURL: imageURL)
+        
+        //convert to json object
+        let itemJSON = [
+            "id": id.uuidString,
+            "description": description,
+            "location": location,
+            "image": imageURL.absoluteString
+        ].reduce(into: [String: Any]()) { (accumulatedNewDictionary, element) in
+            if let value = element.value { accumulatedNewDictionary[element.key] = value }
+            
+            //creating a new dictionary with non nil values.. removing nil values
+        }
+        
+        return (item, itemJSON)
+    }
+    
+    private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
+        //this function will be used to serialize feeditem objects to a json representation3
+        let itemsJSON = ["items": items]
+        let json = try! JSONSerialization.data(withJSONObject: itemsJSON)
+        
+        return json
     }
     
     //Factory method to prevent duplication
