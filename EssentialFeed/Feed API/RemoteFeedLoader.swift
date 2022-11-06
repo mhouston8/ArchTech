@@ -41,8 +41,8 @@ final public class RemoteFeedLoader {
         client.get(from: url) { httpClientResult in
             switch httpClientResult {
             case let .success(data, _):
-                if let _ = try? JSONSerialization.jsonObject(with: data){
-                    completionHandler(.success([]))
+                if let root = try? JSONDecoder().decode(Root.self, from: data) {
+                    completionHandler(.success(root.items))
                 } else {
                     completionHandler(.failure(.invalidData))
                 }
@@ -51,4 +51,10 @@ final public class RemoteFeedLoader {
             }
         }
     }
+}
+
+
+//this is the root node in the payload contract
+private struct Root: Decodable {
+    let items: [FeedItem]
 }
