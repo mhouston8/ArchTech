@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB8E660C292AD2A30041D555 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8E660B292AD2A30041D555 /* HTTPClient.swift */; };
 		BBE42047290F2217001B10BB /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE42046290F2216001B10BB /* RemoteFeedLoader.swift */; };
 		BBEA5B7528E53C290050D3C7 /* EssentialFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = BBEA5B7428E53C290050D3C7 /* EssentialFeed.docc */; };
 		BBEA5B7B28E53C290050D3C7 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEA5B7028E53C280050D3C7 /* EssentialFeed.framework */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB8E660B292AD2A30041D555 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		BBE42046290F2216001B10BB /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
 		BBEA5B7028E53C280050D3C7 /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBEA5B7328E53C280050D3C7 /* EssentialFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EssentialFeed.h; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				BBE42046290F2216001B10BB /* RemoteFeedLoader.swift */,
+				BB8E660B292AD2A30041D555 /* HTTPClient.swift */,
 			);
 			path = "Feed API";
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBE42047290F2217001B10BB /* RemoteFeedLoader.swift in Sources */,
+				BB8E660C292AD2A30041D555 /* HTTPClient.swift in Sources */,
 				BBEA5B8D28EEB2630050D3C7 /* FeedLoader.swift in Sources */,
 				BBEA5B8B28E53C440050D3C7 /* FeedItem.swift in Sources */,
 				BBEA5B7528E53C290050D3C7 /* EssentialFeed.docc in Sources */,
