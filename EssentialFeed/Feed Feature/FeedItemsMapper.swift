@@ -15,6 +15,10 @@ internal final class FeedItemsMapper {
     //this is the root node in the payload contract. this is very useful
     private struct Root: Decodable {
         let items: [Item]
+        
+        var feed: [FeedItem] {
+            return items.map({ $0.item })
+        }
     }
 
 
@@ -35,12 +39,13 @@ internal final class FeedItemsMapper {
         return 200
     }
     
-    internal static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [FeedItem] {
-        guard response.statusCode == OK_200 else {
-            throw RemoteFeedLoader.Error.invalidData
+    //making this static also prevents us from having to call self on the RemoteFeedLoader which could cause a memor leak.
+    internal static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteFeedLoader.Result {
+        guard response.statusCode == OK_200,
+            let root = try? JSONDecoder().decode(Root.self, from: data) else {
+            return .failure(.invalidData)
         }
         
-        let root = try JSONDecoder().decode(Root.self, from: data)
-        return root.items.map({ $0.item })
+        return .success(root.feed)
     }
 }
