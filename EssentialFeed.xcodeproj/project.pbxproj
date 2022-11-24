@@ -99,8 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				BBE42045290F21EB001B10BB /* Feed API */,
-				BBEA5B7328E53C280050D3C7 /* EssentialFeed.h */,
 				BBEA5B8E28EEB3FB0050D3C7 /* Feed Feature */,
+				BBEA5B7328E53C280050D3C7 /* EssentialFeed.h */,
 				BBEA5B7428E53C290050D3C7 /* EssentialFeed.docc */,
 			);
 			path = EssentialFeed;

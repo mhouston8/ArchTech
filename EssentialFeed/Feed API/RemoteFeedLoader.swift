@@ -10,15 +10,14 @@ import Foundation
 
 final public class RemoteFeedLoader {
     
+    //domain level error
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
     }
     
-    public enum Result: Equatable {
-        case success([FeedItem])
-        case failure(Error)
-    }
+    
+    public typealias Result = LoadFeedResult<Error>
     
     private let url: URL
     private let client: HTTPClient
