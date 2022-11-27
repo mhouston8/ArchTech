@@ -13,7 +13,7 @@ public enum LoadFeedResult {
 }
 
 //This is the protocol/boundary
-protocol FeedLoader {
+public protocol FeedLoader {
     func load(completionHandler: @escaping (LoadFeedResult) -> Void)
 }
 

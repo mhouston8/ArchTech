@@ -175,6 +175,10 @@ class RemoteFeedLoaderTests: XCTestCase {
         return (item, itemJSON)
     }
     
+    private func failure(_ error: RemoteFeedLoader.Error) -> RemoteFeedLoader.Result {
+        return .failure(error)
+    }
+    
     private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
         //this function will be used to serialize feeditem objects to a json representation3
         let itemsJSON = ["items": items]
@@ -214,10 +218,6 @@ class RemoteFeedLoaderTests: XCTestCase {
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(client)
         return (sut, client)
-    }
-    
-    private func failure(_ error: RemoteFeedLoader.Error) -> RemoteFeedLoader.Result {
-        return .failure(error)
     }
     
     
