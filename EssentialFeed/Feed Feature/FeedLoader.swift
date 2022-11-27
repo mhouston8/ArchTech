@@ -12,8 +12,6 @@ public enum LoadFeedResult<Error: Swift.Error> {
     case failure(Error)
 }
 
-extension LoadFeedResult: Equatable where Error: Equatable {}
-
 //This is the protocol/boundary
 protocol FeedLoader {
     associatedtype Error: Swift.Error
