@@ -8,7 +8,7 @@
 import Foundation
 
 
-final public class RemoteFeedLoader {
+final public class RemoteFeedLoader: FeedLoader {
     
     //domain level error
     public enum Error: Swift.Error {
