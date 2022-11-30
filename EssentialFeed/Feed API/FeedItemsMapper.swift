@@ -7,7 +7,7 @@
 
 import Foundation
 
-//Very Powerful class that represents the API call
+//Very Powerful class that represents the API call.. this class will map the response
 //This class is internal because it should only be accessible to this module.. internal is also the default scope
 //this class is not meant to be subclassed.
 internal final class FeedItemsMapper {
